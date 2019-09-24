@@ -10,5 +10,10 @@
 Config.txt example
 
 SENG440(A) M 1:30pm-2:20pm T 1:30pm-2:20pm
+
 SENG440(B) F 2:00pm-4:20pm
+
 CSC320(A) Th 11:30am-12:20pm F 11:30am-12:20pm
+
+
+

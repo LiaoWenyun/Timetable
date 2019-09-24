@@ -9,11 +9,9 @@
 
 Config.txt example
 
-SENG440(A) M 1:30pm-2:20pm T 1:30pm-2:20pm
-
-SENG440(B) F 2:00pm-4:20pm
-
-CSC320(A) Th 11:30am-12:20pm F 11:30am-12:20pm
+1. SENG422(A) M 9:30am-10:20am W 3:00pm-4:20pm
+2. SENG422(B) M 1:30pm-3:20pm F 3:00pm-4:20pm
+3. CSC455(A) W 10:30am-11:20am Th 5:00pm-6:20pm F 5:00pm-6:20pm
 
 
-![Test Image 1](https://github.com/LiaoWenyun/Timetable/blob/master/image.png)
+<img src="https://github.com/LiaoWenyun/Timetable/blob/master/image.png" height="700" width="550">

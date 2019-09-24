@@ -1,3 +1,3 @@
 SENG422(A) M 9:30am-10:20am W 3:00pm-4:20pm
-SNEG422(B) M 1:30pm-3:20pm F 3:00pm-4:20pm
+SENG422(B) M 1:30pm-3:20pm F 3:00pm-4:20pm
 CSC455(A) W 10:30am-11:20am Th 5:00pm-6:20pm F 5:00pm-6:20pm

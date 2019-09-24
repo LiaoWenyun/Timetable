@@ -45,7 +45,6 @@ void read_file(struct Class* class_list){
 	}else{
 		int class_position = 0;
 		while(fgets(buffer, sizeof(buffer), file)){	   //iterate through the file line by line 	
-			printf("%s\n",buffer);
 			int len = strlen(buffer);
 			if( buffer[len-1] == '\n' ){ buffer[len-1] = 0;} //remove the "\n"
 			int count = 0;

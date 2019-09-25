@@ -1,6 +1,8 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
+
 
 
 struct Class{
@@ -12,21 +14,41 @@ struct Class{
 
 
 //declaration of the functions
+char* get_today();
+void yellow();
+void reset();
 void read_file();
-void print_array(struct Class* class_list);
-int parse_time(char* token);
-int parse_length(char* token);
-int map_time(char* time); 		
-void insert_empty_class( struct Class* M_class, struct Class* T_class, struct Class* W_class, struct Class* Th_class, struct Class* F_class);
-int schedule(struct Class* class_list, struct Class* M_class, struct Class* T_class, struct Class* W_class, struct Class* Th_class, struct Class* F_class);
-char* space(char* name);
-void print_schedule(struct Class* M_class, struct Class* T_class, struct Class* W_class, struct Class* Th_class, struct Class* F_class);
+void print_array(struct Class*);
+int parse_time(char* );
+int parse_length(char*);
+int map_time(char*); 		
+void insert_empty_class( struct Class*, struct Class* , struct Class*, struct Class*, struct Class*);
+int schedule(struct Class*, struct Class*, struct Class*, struct Class*, struct Class*, struct Class*);
+char* space(char*);
+void print_schedule(struct Class*, struct Class*, struct Class* , struct Class* , struct Class*);
 
 //examples in config.txt file
 //ENG422(A)  Mon 9:30am-10:30am  Wed 3:00pm-4:30pm
 //SNEG422(B)  Mon 1:30pm-3:30pm 
 //CSC455(A)  Wed 10:30am-11:30am 
 
+char* get_today(){
+  	char* rest;
+	time_t now;    // time_t is arithmetic time type
+	time(&now);    //get the current time 
+	char *today = strtok_r(ctime(&now)," ",&rest);	
+	return today;
+
+}
+
+void yellow(){
+		  //printf("\033[1;31m");       //red
+			printf("\033[0;33m");
+}
+
+void reset(){
+		  printf("\033[0m");
+}
 
 void read_file(struct Class* class_list){
 	
@@ -182,7 +204,7 @@ int schedule(struct Class* class_list, struct Class* M_class, struct Class* T_cl
 							printf("time conflict between class: %s and %s \n ",M_class[class_list[i].start_time/30 + j].class_name, class.class_name);
 							conflict = 1;		
 						}else{
-							M_class[class_list[i].start_time/30 + j] = class;
+								M_class[class_list[i].start_time/30 + j] = class;
 						}
 				 }else if(strcmp(class_list[i].day,"T")==0){
 						if(strcmp(T_class[class_list[i].start_time/30 + j].class_name,"          ")!=0){
@@ -265,8 +287,51 @@ char* space(char* name){
 
 void print_schedule(struct Class* M_class, struct Class* T_class, struct Class* W_class, struct Class* Th_class, struct Class* F_class){
 	
+	char* today = get_today();
 	printf(" ----------------------------------------------------------------------------------------------\n");	
-	printf("|         |     Monday     |     Tuesday    |    Wednesday   |    Thursday    |     Friday     |\n"	);	
+	//printf("|         |     Monday     |     Tuesday    |    Wednesday   |    Thursday    |     Friday     |\n",mon,tue,wed,thu,fri);	
+	printf("|         |" );
+	if(strcmp(today,"Mon")==0){
+		yellow();
+		printf("     Monday     ");
+		reset();
+	}else{
+		printf("     Monday     ");
+	}
+	printf("|");
+	if(strcmp(today,"Tue")==0){
+		yellow();
+		printf("     Tuesday    ");
+		reset();	
+	}else{
+		printf("     Tuesday    ");
+	}
+	printf("|");
+	if(strcmp(today,"Wed")==0){
+		yellow();
+		printf("    Wednesday   ");
+		reset();
+	}else{
+		printf("    Wednesday   ");
+	}
+	printf("|");
+	if(strcmp(today,"Thu")==0){
+		yellow();
+		printf("    Thursday    ");
+		reset();
+	}else{
+		printf("    Thursday    ");
+	}
+	printf("|");
+	if(strcmp(today,"Fri")==0){
+		yellow();
+		printf("     Friday     ");
+		reset();
+	}else{
+		printf("     Friday     ");
+	}
+	printf("|\n");
+
 	printf("|----------------------------------------------------------------------------------------------|\n");
 	int i;
 	for(i=0; i<30; i++){
@@ -287,7 +352,7 @@ void print_schedule(struct Class* M_class, struct Class* T_class, struct Class* 
 			
 		printf("|%d:%d0%s -|----------------|----------------|----------------|----------------|----------------|\n", hour,min,unit);
 		printf("|         |   %s   |   %s   |   %s   |   %s   |   %s   |\n",space(M_class[i].class_name),space(T_class[i].class_name),space(W_class[i].class_name),space(Th_class[i].class_name),space(F_class[i].class_name) );
-		//printf("---------------------------------------------------------------------------------------------------------\n"        );
+
 	}
 	printf(" ----------------------------------------------------------------------------------------------\n");
 
@@ -308,6 +373,7 @@ int main(){
 	int conflict = schedule(class_list,M_class, T_class, W_class, Th_class, F_class); 
 	if(conflict ==0){print_schedule(M_class, T_class, W_class, Th_class, F_class);}		
 	return 0;
+
 }
 
 
